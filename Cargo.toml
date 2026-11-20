@@ -1,0 +1,21 @@
+[workspace]
+members = [
+    "crates/vellum-core",
+    "crates/vellum-ui",
+    "crates/vellum-app",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["NovaOS Engineering Team"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/firoze-hossain/vellum.git"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

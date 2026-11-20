@@ -1,0 +1,10 @@
+[package]
+name = "vellum-core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Pure Rust PDF reading, editing, parsing, vector rendering, and serialization engine for Vellum PDF Studio"
+
+[dependencies]
+# Zero external C/C++ or third-party dependencies - pure standard library Rust 1.99.1

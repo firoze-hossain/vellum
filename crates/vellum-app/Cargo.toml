@@ -1,0 +1,15 @@
+[package]
+name = "vellum-app"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Vellum PDF Studio desktop application and CLI tool"
+
+[[bin]]
+name = "vellum"
+path = "src/main.rs"
+
+[dependencies]
+vellum-core = { path = "../vellum-core" }
+vellum-ui = { path = "../vellum-ui" }

@@ -1,0 +1,10 @@
+[package]
+name = "vellum-ui"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Modern PDF Studio UI combining Adobe Acrobat editing, macOS Preview markup, and Ubuntu Evince reading"
+
+[dependencies]
+vellum-core = { path = "../vellum-core" }

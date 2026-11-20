@@ -1,0 +1,242 @@
+%PDF-1.7
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 3 /Kids [ 7 0 R 10 0 R 12 0 R ] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R
+   /MediaBox [0 0 612 792]
+   /CropBox [0 0 612 792]
+   /Rotate 0
+   /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >>
+   /Contents 8 0 R
+   /Annots [ 9 0 R ]
+>>
+endobj
+8 0 obj
+<< /Length 1483 /Filter /FlateDecode >>
+stream
+x¿?˙q
+1.00 w
+0.050 0.450 0.850 rg
+50.00 742.00 m
+562.00 742.00 l
+562.00 740.00 l
+50.00 740.00 l
+h
+f
+Q
+q
+1.50 w
+0.200 0.500 0.900 RG
+0.940 0.960 0.990 rg
+50.00 560.00 m
+562.00 560.00 l
+562.00 480.00 l
+50.00 480.00 l
+h
+B
+Q
+BT
+/F1 22.00 Tf
+0.060 0.090 0.160 rg
+50.00 750.00 Td
+(NovaOS Technical Report: Architecture & Systems) Tj
+ET
+BT
+/F1 13.00 Tf
+0.350 0.420 0.500 rg
+50.00 720.00 Td
+(Vellum Studio -- Next-Generation Document Processing in Pure Rust) Tj
+ET
+BT
+/F1 16.00 Tf
+0.080 0.120 0.200 rg
+50.00 675.00 Td
+(1. Executive Overview) Tj
+ET
+BT
+/F1 11.00 Tf
+0.150 0.200 0.280 rg
+50.00 648.00 Td
+(NovaOS introduces a unified desktop environment featuring sovereign, pure Rust userland) Tj
+ET
+BT
+/F1 11.00 Tf
+0.150 0.200 0.280 rg
+50.00 630.00 Td
+(applications. Vellum PDF Studio combines the document editing power of Adobe Acrobat,) Tj
+ET
+BT
+/F1 11.00 Tf
+0.150 0.200 0.280 rg
+50.00 612.00 Td
+(the swift annotation and markup palette of macOS Preview, and the lightweight clarity) Tj
+ET
+BT
+/F1 11.00 Tf
+0.150 0.200 0.280 rg
+50.00 594.00 Td
+(and fast search experience of Ubuntu Evince into a single cohesive platform.) Tj
+ET
+BT
+/F1 11.50 Tf
+0.100 0.300 0.700 rg
+65.00 540.00 Td
+(Core Architectural Highlights:) Tj
+ET
+BT
+/F1 10.50 Tf
+0.150 0.220 0.330 rg
+75.00 520.00 Td
+(- Pure Rust 1.99.1 implementation with zero external C dependencies.) Tj
+ET
+BT
+/F1 10.50 Tf
+0.150 0.220 0.330 rg
+75.00 502.00 Td
+(- Built-in RFC 1950/1951 Deflate/Inflate engine for stream compression.) Tj
+ET
+Óå]
+endstream
+endobj
+9 0 obj
+<< /Rect [50.0000 646.0000 500.0000 14.0000] /T (Chief Architect) /QuadPoints [50.0000 14.0000 500.0000 14.0000 50.0000 646.0000 500.0000 646.0000] /Contents (Key architectural statement) /Subtype /Highlight /C [0.9961 0.9412 0.5412] /Type /Annot >>
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R
+   /MediaBox [0 0 612 792]
+   /CropBox [0 0 612 792]
+   /Rotate 0
+   /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >>
+   /Contents 11 0 R
+>>
+endobj
+11 0 obj
+<< /Length 754 /Filter /FlateDecode >>
+stream
+xÁ˝q
+1.00 w
+0.600 0.650 0.750 RG
+0.980 0.980 1.000 rg
+80.00 680.00 m
+530.00 680.00 l
+530.00 550.00 l
+80.00 550.00 l
+h
+B
+Q
+BT
+/F1 18.00 Tf
+0.080 0.120 0.200 rg
+50.00 740.00 Td
+(2. Pure Rust Microkernel Architecture) Tj
+ET
+BT
+/F1 11.00 Tf
+0.200 0.250 0.350 rg
+50.00 710.00 Td
+(Memory safety is enforced from hardware boot to graphical presentation.) Tj
+ET
+BT
+/F4 10.00 Tf
+0.100 0.500 0.200 rg
+100.00 650.00 Td
+([ Userland: Aero Browser | Vellum PDF Studio | Spectra Media Player ]) Tj
+ET
+BT
+/F4 10.00 Tf
+0.050 0.350 0.750 rg
+100.00 615.00 Td
+([ Compositor / Window Manager \(wm-rs\) -- 32-bit ARGB Framebuffer ]) Tj
+ET
+BT
+/F4 10.00 Tf
+0.800 0.200 0.100 rg
+100.00 580.00 Td
+([ NovaOS Pure Rust Kernel Core -- Virtual Memory, Scheduler, IPC ]) Tj
+ET
+zÓ¡Å
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R
+   /MediaBox [0 0 612 792]
+   /CropBox [0 0 612 792]
+   /Rotate 0
+   /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R /F4 6 0 R >> >>
+   /Contents 13 0 R
+>>
+endobj
+13 0 obj
+<< /Length 398 /Filter /FlateDecode >>
+stream
+xÉ|˛BT
+/F1 18.00 Tf
+0.080 0.120 0.200 rg
+50.00 740.00 Td
+(3. Vellum Document Studio Ecosystem) Tj
+ET
+BT
+/F1 11.00 Tf
+0.200 0.250 0.350 rg
+50.00 710.00 Td
+(Vellum provides end-to-end PDF lifecycle management: reading, in-place editing,) Tj
+ET
+BT
+/F1 11.00 Tf
+0.200 0.250 0.350 rg
+50.00 692.00 Td
+(freehand annotation, form filling, text extraction, search indexing, and serialization.) Tj
+ET
+aín‰
+endstream
+endobj
+14 0 obj
+<< /Title (NovaOS Architecture & Vellum PDF Studio)
+   /Author (NovaOS Systems Engineering Team)
+   /Subject (Operating System Architecture and Pure Rust Document Engine)
+   /Creator (Vellum PDF Studio v1.0.0)
+   /Producer (Vellum Pure Rust PDF Engine)
+>>
+endobj
+xref
+0 15
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000137 00000 n 
+0000000234 00000 n 
+0000000336 00000 n 
+0000000435 00000 n 
+0000000530 00000 n 
+0000000755 00000 n 
+0000002311 00000 n 
+0000002576 00000 n 
+0000002782 00000 n 
+0000003609 00000 n 
+0000003815 00000 n 
+0000004286 00000 n 
+trailer
+<< /Size 15
+   /Root 1 0 R
+   /Info 14 0 R
+>>
+startxref
+4558
+%%EOF
