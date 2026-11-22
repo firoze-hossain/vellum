@@ -13,3 +13,4 @@ path = "src/main.rs"
 [dependencies]
 vellum-core = { path = "../vellum-core" }
 vellum-ui = { path = "../vellum-ui" }
+minifb = "0.29.0"

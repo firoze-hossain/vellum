@@ -370,13 +370,8 @@ fn export_view_snapshot(args: &[String]) {
 
 fn run_default_sample() {
     let doc = sample::create_vellum_sample_document();
-    let mut view = VellumView::new(doc);
-    let sw = 1024;
-    let sh = 768;
-    let mut surface = vec![0u32; sw * sh];
-    view.render(&mut surface, sw as i32, sh as i32);
-    println!("Vellum PDF Studio v1.0.0 initialized with sovereign sample document (3 pages).");
-    println!("Running in NovaOS graphical environment.");
+    let view = VellumView::new(doc);
+    run_desktop_gui(view, "Sovereign PDF Sample (3 Pages)");
 }
 
 fn run_file_view(path: &str) {
@@ -396,12 +391,101 @@ fn run_file_view(path: &str) {
         }
     };
 
-    let mut view = VellumView::new(doc);
-    let sw = 1024;
-    let sh = 768;
+    let file_name = std::path::Path::new(path)
+        .file_name()
+        .and_then(|n| n.to_str())
+        .unwrap_or(path);
+
+    let view = VellumView::new(doc);
+    run_desktop_gui(view, file_name);
+}
+
+fn run_desktop_gui(mut view: VellumView, doc_title: &str) {
+    let mut sw = 1024;
+    let mut sh = 768;
+
+    let win_title = format!("Vellum PDF Studio - {}", doc_title);
+    let mut window = match minifb::Window::new(
+        &win_title,
+        sw,
+        sh,
+        minifb::WindowOptions {
+            resize: true,
+            ..minifb::WindowOptions::default()
+        },
+    ) {
+        Ok(w) => w,
+        Err(e) => {
+            eprintln!("[Vellum] Note: Native window could not be opened ({}). Rendering offscreen...", e);
+            let mut surface = vec![0u32; sw * sh];
+            view.render(&mut surface, sw as i32, sh as i32);
+            let non_zero = surface.iter().filter(|&&p| p != 0).count();
+            println!("[Vellum] Headless offscreen render complete: {} non-zero pixels.", non_zero);
+            return;
+        }
+    };
+
+    window.set_target_fps(60);
+    println!("[Vellum] Native cross-platform desktop window created ({}x{}).", sw, sh);
+
     let mut surface = vec![0u32; sw * sh];
-    view.render(&mut surface, sw as i32, sh as i32);
-    println!("Vellum PDF Studio: Loaded '{}' ({} pages).", path, view.editor.document.pages.len());
+    let mut mouse_down = false;
+
+    while window.is_open() && !window.is_key_down(minifb::Key::Escape) && !window.is_key_down(minifb::Key::Q) {
+        // 1. Dynamic Window Resizing
+        let (cur_w, cur_h) = window.get_size();
+        if (cur_w != sw || cur_h != sh) && cur_w >= 320 && cur_h >= 240 {
+            sw = cur_w;
+            sh = cur_h;
+            surface = vec![0u32; sw * sh];
+        }
+
+        // 2. Mouse Input Handling
+        if let Some((mx, my)) = window.get_mouse_pos(minifb::MouseMode::Discard) {
+            let px = mx as i32;
+            let py = my as i32;
+            let is_down = window.get_mouse_down(minifb::MouseButton::Left);
+
+            if is_down && !mouse_down {
+                mouse_down = true;
+                view.handle_click(px, py, sw as i32, sh as i32);
+            } else if !is_down && mouse_down {
+                mouse_down = false;
+            }
+        }
+
+        // 3. Scroll Wheel (Page navigation)
+        if let Some((_sx, sy)) = window.get_scroll_wheel() {
+            if sy > 0.0 {
+                view.prev_page();
+            } else if sy < 0.0 {
+                view.next_page();
+            }
+        }
+
+        // 4. Keyboard Shortcuts
+        for key in window.get_keys_pressed(minifb::KeyRepeat::Yes) {
+            match key {
+                minifb::Key::Left | minifb::Key::PageUp => view.prev_page(),
+                minifb::Key::Right | minifb::Key::PageDown => view.next_page(),
+                minifb::Key::Equal => view.zoom_in(),
+                minifb::Key::Minus => view.zoom_out(),
+                minifb::Key::N => view.night_mode = !view.night_mode,
+                minifb::Key::F => view.search_open = !view.search_open,
+                minifb::Key::A => view.show_about = !view.show_about,
+                _ => {}
+            }
+        }
+
+        // 5. Render & Present
+        view.render(&mut surface, sw as i32, sh as i32);
+        if let Err(e) = window.update_with_buffer(&surface, sw, sh) {
+            eprintln!("[Vellum] Window update error: {}", e);
+            break;
+        }
+    }
+
+    println!("[Vellum] PDF Studio session ended cleanly.");
 }
 
 #[cfg(test)]
